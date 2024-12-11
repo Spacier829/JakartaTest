@@ -12,12 +12,12 @@
 </head>
 <body>
     <h1>Testing JSP</h1>
-        <p>
-            <%@page import="java.util.Date, logic.TestClass " %>
-            <%
-                out.println(new Date());
-                out.println(new TestClass().getInfo());
-            %>
-        </p>
+    <p>
+        <%
+            String name = request.getParameter("name");
+            String surname = request.getParameter("surname");
+        %>
+        <%= "Hello, " + name + " " + surname%>
+    </p>
 </body>
 </html>
