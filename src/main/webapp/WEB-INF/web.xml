@@ -4,11 +4,11 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
          version="6.0">
     <servlet>
-        <servlet-name>FirstJsp</servlet-name>
-        <jsp-file>/firstJsp.jsp</jsp-file>
+        <servlet-name>TestJsp</servlet-name>
+        <jsp-file>/testJsp.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>FirstJsp</servlet-name>
-        <url-pattern>/first-jsp </url-pattern>
+        <servlet-name>TestJsp</servlet-name>
+        <url-pattern>/test-jsp </url-pattern>
     </servlet-mapping>
-</web-app>
+</web-app>  
