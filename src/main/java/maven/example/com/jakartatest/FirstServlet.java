@@ -14,8 +14,19 @@ public class FirstServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    RequestDispatcher rd = request.getRequestDispatcher("/testJsp.jsp");
-    rd.forward(request, response);
+    HttpSession session = request.getSession();
 
+    Integer count = (Integer) session.getAttribute("count");
+    if (count == null) {
+      count = 1;
+      session.setAttribute("count", count);
+    } else {
+      session.setAttribute("count", ++count);
+    }
+
+    PrintWriter pw = response.getWriter();
+    pw.println("<html>");
+    pw.println("<h1>Ur count is: " + count + "</h1>");
+    pw.println("</html>");
   }
 }
