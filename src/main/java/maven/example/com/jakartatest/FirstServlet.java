@@ -2,10 +2,10 @@ package maven.example.com.jakartatest;
 
 import java.io.*;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import logic.Cart;
 
 @WebServlet(name = "firstServlet", value = "/first-servlet")
 public class FirstServlet extends HttpServlet {
@@ -16,17 +16,34 @@ public class FirstServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     HttpSession session = request.getSession();
 
-    Integer count = (Integer) session.getAttribute("count");
-    if (count == null) {
-      count = 1;
-      session.setAttribute("count", count);
+    String user = session.getAttribute("current_user").toString();
+    if (user == null) {
+      // response для анонима
+      // Регистрация
+      // session.setAttribute("current_user", ID)
     } else {
-      session.setAttribute("count", ++count);
+      //response для авторизованного пользова теля
     }
 
-    PrintWriter pw = response.getWriter();
-    pw.println("<html>");
-    pw.println("<h1>Ur count is: " + count + "</h1>");
-    pw.println("</html>");
+//    Cart cart = (Cart) session.getAttribute("cart");
+//
+//    String name = request.getParameter("name");
+//    int quantity = Integer.parseInt(request.getParameter("quantity"));
+//
+//    if (cart == null) {
+//      cart = new Cart();
+//      cart.setName(name);
+//      cart.setQuantity(quantity);
+//    }
+//
+//    session.setAttribute("cart", cart);
+
+
+//    PrintWriter pw = response.getWriter();
+//    pw.println("<html>");
+//    pw.println("<h1>Ur count is: " +  + "</h1>");
+//    pw.println("</html>");
+
+    getServletContext().getRequestDispatcher("/showCart.jsp").forward(request, response);
   }
 }
