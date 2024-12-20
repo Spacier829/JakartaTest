@@ -18,21 +18,17 @@ public class LibraryServlet extends HttpServlet {
     PrintWriter pw = response.getWriter();
 
     try {
-      Class.forName("org.postgresql.Driver");
+      Class.forName("org.sqlite.JDBC");
     } catch (ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
-
     try {
-      Connection connection = DriverManager.getConnection(
-          "jdbc:postgresql://localhost:5432/jakarta_ee_db",
-          "postgres",
-          "123");
+      Connection connection = DriverManager.getConnection("jdbc:sqlite:D:/Files/Projects/Java/JakartaTest/src/main/java/maven/example/com/jakartatest/users.db");
       Statement stmt = connection.createStatement();
-      ResultSet rs = stmt.executeQuery("SELECT * FROM books");
+      ResultSet rs = stmt.executeQuery("select * from users");
       while (rs.next()) {
         pw.println(rs.getString("id") + " " +
-                   rs.getString("title") + " " + rs.getString("author") + " " + rs.getString("quantity"));
+                   rs.getString("name") + " " + rs.getString("age"));
       }
       stmt.close();
     } catch (SQLException e) {
